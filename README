@@ -1,0 +1,11 @@
+1. vagrant up
+2. vagrant ssh puppetmaster
+3. set root passwd :sudo passwd root
+4. switch to root
+5. Issue puppetmaster certificate with the command mentioned below
+sudo -u puppet puppet master --no-daemonize --verbose
+6. open one more command prompt and run vagrant ssh puppetagent
+7. Request for certificate on the agent with commane :puppet agent -t
+8. Go back to master to sign certiciacte with command mentioned below
+puppet cert list
+puppet cert sign clientname
