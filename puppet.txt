@@ -1,0 +1,31 @@
+on master
+yum -y update
+update DNS anmes in /etc/hosts
+yum -y install http://yum.puppetlabs.com/puppetlabs-release-el-7.noarch.rpm
+yum -y install puppet-server
+vim /etc/puppet/puppet.conf
+dns_alt_names = puppet
+certname = puppet
+sudo -u puppet puppet master --no-daemonize --verbose
+systemctl start puppetmaster
+systemctl enable puppetmaster
+
+on client
+yum -y update
+update DNS anmes in /etc/hosts
+yum -y install http://yum.puppetlabs.com/puppetlabs-release-el-7.noarch.rpm
+yum -y install puppet
+vim /etc/puppet/puppet.conf
+server = puppetmaster
+puppet agent -t   ---->cert request
+
+on master
+puppet cert list
+puppet cert sign clientname
+
+on client
+systemctl start puppet
+systemctl enable puppet
+puppet agent --fingerprint
+
+
