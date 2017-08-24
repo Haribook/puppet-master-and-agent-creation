@@ -9,3 +9,6 @@ sudo -u puppet puppet master --no-daemonize --verbose
 8. Go back to master to sign certiciacte with command mentioned below
 puppet cert list
 puppet cert sign clientname
+
+on the puppet agent request for the certificate.
+puppet agent --no-daemonize --server puppetmaster.cisco.com --onetime --verbose
